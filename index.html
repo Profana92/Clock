@@ -11,14 +11,18 @@
     <title>Clock</title>
 </head>
 
-
 <body>
     <div class="wrapper__main">
         <div class="clockface">
             <div class="case"></div>
             <div class="button"></div>
             <div class="clock">
-                <div data-popup1 class="popup position1">Click to use timer</div>
+                <div data-popup1 class="popup position1">
+
+                    <div data-popupX class="right-align inline">X</div>
+                    <div>Click to use timer</div>
+
+                </div>
                 <div data-hand-hour class="hand hour"></div>
                 <div data-hand-minute class="hand minute"></div>
                 <div data-hand-second class="hand seconds"></div>
@@ -36,6 +40,7 @@
                 <div class="number number11">11</div>
                 <div class="number number12">12</div>
                 <div class="day"></div>
+                <div data-date class="date">01</div>
                 <div class="timer">
                     <div class="wrapper">
                         <div data-hand-timer class="handtimer"></div>
@@ -53,15 +58,23 @@
                         <div class="number number12">0</div>
                     </div>
                 </div>
+                <div class="minute-timer">
+                    <div class="wrapper">
+                        <div data-hand-minute-timer class="hand-minute-timer"></div>
+                        <div class="number number1">5</div>
+                        <div class="number number2">10</div>
+                        <div class="number number3">15</div>
+                        <div class="number number4">20</div>
+                        <div class="number number5">25</div>
+                        <div class="number number6">30</div>
+                        <div class="number number12">0</div>
+                    </div>
+                </div>
             </div>
         </div>
         <div data-hand-digital-clock class="digital">Wczytywanie...</div>
     </div>
-
-
-
 </body>
-
 <script src="js.js"></script>
 
 </html>
