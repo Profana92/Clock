@@ -7,6 +7,10 @@ const timerButton = document.querySelector(".button");
 const digitalClock = document.querySelector("[data-hand-digital-clock]");
 const popup1 = document.querySelector("[data-popup1]");
 const popupX = document.querySelector("[data-popupX]");
+const div1 = document.querySelector("[data-div1]");
+const div2 = document.querySelector("[data-div2]");
+const div3 = document.querySelector("[data-div3]");
+const div4 = document.querySelector("[data-div4]");
 const dateIndicator = document.querySelector("[data-date]");
 const minuteTimerHand = document.querySelector("[data-hand-minute-timer]");
 let currentTimerSeconds = 0;
@@ -21,8 +25,13 @@ function checkValues(
   timerButton,
   digitalClock,
   popup1,
+  popupX,
   dateIndicator,
-  minuteTimerHand
+  minuteTimerHand,
+  div1,
+  div2,
+  div3,
+  div4
 ) {
   if (
     hourHand == null ||
@@ -33,7 +42,12 @@ function checkValues(
     timerButton == null ||
     digitalClock == null ||
     popup1 == null ||
+    popupX == null ||
     dateIndicator == null ||
+    div1 == null ||
+    div2 == null ||
+    div3 == null ||
+    div4 == null ||
     minuteTimerHand == null
   ) {
     throw "Elements selection error, please ensure correct assignment";
@@ -50,6 +64,11 @@ try {
     timerButton,
     digitalClock,
     popup1,
+    popupX,
+    div1,
+    div2,
+    div3,
+    div4,
     dateIndicator,
     minuteTimerHand
   );
@@ -89,13 +108,13 @@ function addSecond() {
   console.log(currentTimerSecondsPrecision);
   if (currentTimerSecondsPrecision % 1 === 0);
   {
-    if (currentTimerSecondsPrecision == 30) {
+    if (currentTimerSecondsPrecision == 1800) {
       console.log("reset");
       currentTimerSecondsPrecision = 0;
       currentTimerSeconds = 0;
       setRotation(minuteTimerHand, 0);
     } else {
-      setRotation(minuteTimerHand, (currentTimerSecondsPrecision / 30) * 180);
+      setRotation(minuteTimerHand, (currentTimerSecondsPrecision / 1800) * 180);
     }
   }
 }
@@ -130,28 +149,30 @@ setInterval(setClock, 100);
 /* Event Listeners */
 timerButton.addEventListener("click", setTimer);
 
-popup1.addEventListener("click", () => {
-  if (popup1.classList.contains("position1")) {
-    popup1.classList.replace("position1", "position2");
-    popup1.innerText = "You can track seconds here, click again";
-  } else if (popup1.classList.contains("position2")) {
-    popup1.innerText = "whole minutes here, click again";
-    popup1.classList.replace("position2", "position3");
-  } else if (popup1.classList.contains("position3")) {
-    popup1.classList.replace("position3", "position4");
-    popup1.innerText = "day of the month is shown here";
-  } else {
-    popup1.classList.replace("position4", "position1");
-    popup1.innerText = "";
-    popup1.insertAdjacentHTML(
-      "afterbegin",
-      " <div data-popupX class='right-align inline'>X</div><div>Click to use timer</div>"
-    );
-  }
-});
-
 popupX.addEventListener("click", hide);
 function hide() {
   console.log(popup1);
   popup1.classList.add("hidden");
 }
+
+popup1.addEventListener("click", () => {
+  if (popup1.classList.contains("position1")) {
+    popup1.classList.replace("position1", "position2");
+    div1.classList.add("hidden");
+    div2.classList.remove("hidden");
+    popupX.classList.add("hidden");
+  } else if (popup1.classList.contains("position2")) {
+    popup1.classList.replace("position2", "position3");
+    div2.classList.add("hidden");
+    div3.classList.remove("hidden");
+  } else if (popup1.classList.contains("position3")) {
+    popup1.classList.replace("position3", "position4");
+    div3.classList.add("hidden");
+    div4.classList.remove("hidden");
+  } else {
+    div1.classList.remove("hidden");
+    div4.classList.add("hidden");
+    popup1.classList.replace("position4", "position1");
+    popupX.classList.remove("hidden");
+  }
+});
