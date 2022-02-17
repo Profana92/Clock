@@ -6,8 +6,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 90vh;
+  min-height: 95vh;
   font-size: 1.6em;
+}
+.hidden {
+  display: none !important;
 }
 .clockface {
   display: flex;
@@ -26,6 +29,7 @@ body {
     rgba(223, 223, 223, 1) 100%
   );
   border-radius: 50%;
+  border: 1px solid white;
   z-index: 1;
 }
 
@@ -36,9 +40,9 @@ body {
   width: 350px;
   height: 50px;
   background: rgb(1, 89, 138);
-  border-top: 1px solid black;
-  border-right: 1px solid black;
-  border-bottom: 1px solid black;
+  border-top: 1px solid white;
+  border-right: 1px solid white;
+  border-bottom: 1px solid white;
   z-index: 0;
 }
 .clock {
@@ -278,6 +282,13 @@ body {
   justify-content: center;
   font-size: 1em;
   text-align: center;
+  padding: 20px;
+  position: absolute;
+  border-radius: 5px;
+  z-index: 500;
+  background-color: white;
+  height: 100px;
+  width: 300px;
 }
 .popup::before {
   content: "";
@@ -292,57 +303,30 @@ body {
   border-right: 10px solid white;
 }
 .position1 {
-  padding: 20px;
-  position: absolute;
   margin: 100px 0;
-  width: 300px;
-  height: 100px;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 500;
   margin-left: 380px;
 }
 .position2 {
-  padding: 20px;
-  position: absolute;
-  width: 300px;
-  height: 100px;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 500;
   margin-left: 190px;
   margin-top: 150px;
 }
 .position3 {
-  padding: 20px;
-  position: absolute;
-  width: 300px;
-  height: 100px;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 500;
   margin-left: 130px;
   margin-top: 120px;
 }
 .position4 {
-  padding: 20px;
-  position: absolute;
-  width: 300px;
-  height: 100px;
-  background-color: white;
-  border-radius: 5px;
-  z-index: 500;
   margin-left: 230px;
   margin-top: 100px;
 }
 
-.hidden {
-  display: none !important;
-}
-
-.inline {
+.inlineX {
   display: inline;
   position: absolute;
   right: 20px;
   font-size: 1em;
+}
+.digital {
+  margin-top: 20px;
+  font-size: 30px;
+  color: antiquewhite;
 }

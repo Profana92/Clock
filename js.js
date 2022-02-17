@@ -1,3 +1,11 @@
+/* Readme 
+  The file is divided into following chapters:
+  1.  Global variables, elements - Lines 9-25
+  2.  Variables assignment tests - Lines 26 - 86
+  3.  Main Functions - Lines 87-126
+  4.  Helper Functions - Lines 127-144
+  5.  Timers - Lines 145-147
+  6.  Event Listeners - Lines 148 182 */
 const hourHand = document.querySelector("[data-hand-hour]");
 const secondHand = document.querySelector("[data-hand-second]");
 const minuteHand = document.querySelector("[data-hand-minute]");
@@ -76,23 +84,21 @@ try {
   console.warn("⛔", e);
 }
 
-/* Main code */
-
-/* Functions */
+/* Main Functions */
 function setClock() {
   let currentDate = new Date();
   let currentDayOfTheMonth = currentDate.getDate();
   let currentHour = currentDate.getHours();
   let currentMinute = (currentDate.getMinutes() / 60) * 360;
   let currentSecond = (currentDate.getSeconds() / 60) * 360;
-  let day = currentDate.getDay();
-  let dayRotation = (day / 7) * 360 + (currentHour / 24) * 51.42857142857142;
+  let dayRotation =
+    (currentDate.getDay() / 7) * 360 + (currentHour / 24) * 51.42857142857142;
+  let currentHourRotation =
+    (((currentHour + 24) % 12) / 12) * 360 + (currentMinute / 360) * 30;
   setRotation(minuteHand, currentMinute);
   setRotation(secondHand, currentSecond);
   setRotation(dayHand, dayRotation);
-  currentHour =
-    (((currentHour + 24) % 12) / 12) * 360 + (currentMinute / 360) * 30;
-  setRotation(hourHand, currentHour);
+  setRotation(hourHand, currentHourRotation);
   setDigitalClock(digitalClock);
   setDateIndicator(currentDayOfTheMonth);
 }
@@ -100,32 +106,7 @@ function setClock() {
 function setRotation(element, rotation) {
   element.style.setProperty("--rotation", rotation);
 }
-function addSecond() {
-  currentTimerSeconds += 0.1;
-  let timerRotation = (currentTimerSeconds / 60) * 360;
-  setRotation(timerHand, timerRotation);
-  let currentTimerSecondsPrecision = currentTimerSeconds.toPrecision(4);
-  console.log(currentTimerSecondsPrecision);
-  if (currentTimerSecondsPrecision % 1 === 0);
-  {
-    if (currentTimerSecondsPrecision == 1800) {
-      console.log("reset");
-      currentTimerSecondsPrecision = 0;
-      currentTimerSeconds = 0;
-      setRotation(minuteTimerHand, 0);
-    } else {
-      setRotation(minuteTimerHand, (currentTimerSecondsPrecision / 1800) * 180);
-    }
-  }
-}
-function setTimer() {
-  if (currentTimerSeconds === 0) {
-    interval = setInterval(addSecond, 100);
-  } else {
-    clearInterval(interval);
-    currentTimerSeconds = 0;
-  }
-}
+
 function setDigitalClock(digitalClock) {
   let digitalClockDate = new Date();
   digitalClock.innerHTML = `${
@@ -137,23 +118,46 @@ function setDigitalClock(digitalClock) {
   }${digitalClockDate.getSeconds()}`;
 }
 function setDateIndicator(currentDayOfTheMonth) {
-  dateIndicator.innerHTML = `${
+  dateIndicator.innerText = `${
     currentDayOfTheMonth < 10 ? "0" : ""
   }${currentDayOfTheMonth}
   `;
+}
+
+/* Helper Functions */
+function addSecond() {
+  currentTimerSeconds += 0.1;
+  let timerRotation = (currentTimerSeconds / 60) * 360;
+  setRotation(timerHand, timerRotation);
+  let currentTimerSecondsPrecision = currentTimerSeconds.toPrecision(4);
+  if (currentTimerSecondsPrecision % 1 === 0);
+  {
+    if (currentTimerSecondsPrecision == 1800) {
+      currentTimerSecondsPrecision = 0;
+      currentTimerSeconds = 0;
+      setRotation(minuteTimerHand, 0);
+    } else {
+      setRotation(minuteTimerHand, (currentTimerSecondsPrecision / 1800) * 180);
+    }
+  }
 }
 
 /* Timers */
 setInterval(setClock, 100);
 
 /* Event Listeners */
-timerButton.addEventListener("click", setTimer);
+timerButton.addEventListener("click", () => {
+  if (currentTimerSeconds === 0) {
+    interval = setInterval(addSecond, 100);
+  } else {
+    clearInterval(interval);
+    currentTimerSeconds = 0;
+  }
+});
 
-popupX.addEventListener("click", hide);
-function hide() {
-  console.log(popup1);
+popupX.addEventListener("click", () => {
   popup1.classList.add("hidden");
-}
+});
 
 popup1.addEventListener("click", () => {
   if (popup1.classList.contains("position1")) {
