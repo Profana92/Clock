@@ -1,11 +1,12 @@
 /* Readme 
   The file is divided into following chapters:
-  1.  Global variables, elements - Lines 9-25
-  2.  Variables assignment tests - Lines 26 - 86
-  3.  Main Functions - Lines 87-126
-  4.  Helper Functions - Lines 127-144
-  5.  Timers - Lines 145-147
-  6.  Event Listeners - Lines 148 182 */
+  1.  Global variables, elements - Lines 10-26
+  2.  Variables assignment tests - Lines 27 - 87
+  3.  Main Functions - Lines 88-127
+  4.  Helper Functions - Lines 128-145
+  5.  Timers - Lines 146-148
+  6.  Event Listeners - Lines 149-183 */
+
 const hourHand = document.querySelector("[data-hand-hour]");
 const secondHand = document.querySelector("[data-hand-second]");
 const minuteHand = document.querySelector("[data-hand-minute]");
